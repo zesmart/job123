@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// 求职记录模型
+// 主界面展示的活跃记录；当 isTrashed=true 时表示已移入回收站
+model JobRecord {
+  id            String   @id @default(cuid())
+  // 企业名称，例如 "字节跳动"
+  companyName   String
+  // 企业性质，例如 "国企 / 民企 / 外企 / 事业单位 / 创业公司"
+  companyType   String
+  // 岗位名称，例如 "前端工程师"
+  positionName  String
+  // 工作地点，例如 "北京 / 上海 / 远程"
+  workLocation  String
+  // 投递时的链接（可为空）
+  applyUrl      String?
+  // 投递时间（ISO 字符串 / Date）
+  applyDate     DateTime
+  // 求职状态：PENDING(待投递) / APPLIED(已投递) / WRITTEN_TEST(笔试中) / INTERVIEW(面试中) / OC(已OC) / OFFER(已Offer) / REJECTED(已拒绝)
+  status        String   @default("APPLIED")
+  // 岗位描述 / JD，用户手动填写
+  jobDescription String?
+  // 备注（可选）
+  notes         String?
+
+  // 优选区标记：true 时该记录显示在主界面顶部的优选区
+  isFavorite    Boolean  @default(false)
+  // 优选区排序值，数值越小越靠前
+  favoriteOrder Int      @default(0)
+
+  // 回收站相关字段
+  isTrashed       Boolean   @default(false)
+  removeReason    String?   // 移除理由（预设/自定义）
+  trashedAt       DateTime? // 移入回收站的时间
+
+  // 普通排序（同区内按此值升序，再按投递时间倒序）
+  sortOrder       Int       @default(0)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([isTrashed])
+  @@index([isFavorite])
+  @@index([status])
+}
