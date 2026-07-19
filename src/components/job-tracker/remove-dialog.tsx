@@ -119,7 +119,7 @@ function RemoveForm({
         {/* 预设理由 */}
         <div>
           <Label className="mb-1.5 block text-sm">移除理由（可选）</Label>
-          <Select value={preset} onValueChange={setPreset}>
+          <Select value={preset} onValueChange={setPreset} id="remove-reason">
             <SelectTrigger>
               <SelectValue placeholder="选择一个预设理由..." />
             </SelectTrigger>

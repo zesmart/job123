@@ -66,7 +66,7 @@ export function AppShell() {
 
       <div className="flex flex-1">
         {/* 桌面侧边栏 */}
-        <aside className="hidden w-64 shrink-0 border-r bg-sidebar/40 md:block">
+        <aside className="relative z-10 hidden w-64 shrink-0 border-r bg-sidebar/40 md:block">
           <div className="sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto">
             <SidebarNav />
           </div>
