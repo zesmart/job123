@@ -7,7 +7,7 @@ import { JobStatus, JOB_STATUS_LIST } from "@/lib/constants";
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const status = searchParams.get("status") as JobStatus | null;
+    const status = searchParams.get("status") as JobStatus | "ALL" | null;
     const keyword = searchParams.get("keyword")?.trim() || "";
     const location = searchParams.get("location")?.trim() || "";
 
