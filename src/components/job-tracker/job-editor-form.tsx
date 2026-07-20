@@ -179,7 +179,6 @@ export function JobEditorForm({
           <Select
             value={form.companyType}
             onValueChange={(v) => set("companyType", v)}
-            id="editor-company-type"
           >
             <SelectTrigger>
               <SelectValue placeholder="选择企业性质" />
@@ -199,7 +198,6 @@ export function JobEditorForm({
           <Select
             value={form.status}
             onValueChange={(v) => set("status", v as JobStatus)}
-            id="editor-status"
           >
             <SelectTrigger>
               <SelectValue placeholder="选择状态" />

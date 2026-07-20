@@ -60,7 +60,6 @@ export function FilterBar() {
           onValueChange={(v) =>
             setStatusFilter(v as typeof statusFilter)
           }
-          id="filter-status"
         >
           <SelectTrigger className="w-[140px]">
             <Filter className="mr-1.5 h-3.5 w-3.5 text-muted-foreground" />
